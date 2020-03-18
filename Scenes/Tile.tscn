@@ -1,6 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Tile.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/smoke_plume_0006.png" type="Texture" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.302857, 0.365714, 0.382857, 0.388571, 0.8, 0.977143, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.870588, 0.4, 0.4, 1, 0, 0, 0, 0, 0.0630631, 0.0630631, 0.0630631, 0, 0.711513, 0.262595, 0.262595, 0.761986, 0.791322, 0.287153, 0.287153, 0.855769, 0.914063, 0.324921, 0.324921, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 3.0
+linear_accel_random = 0.5
+angle_random = 0.5
+scale = 0.25
+scale_random = 1.0
+color_ramp = SubResource( 2 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32, 16 )
@@ -8,18 +29,36 @@ extents = Vector2( 32, 16 )
 [node name="Tile" type="StaticBody2D" groups=[
 "Tiles",
 ]]
-editor/display_folded = true
 position = Vector2( 104, 296 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Smoke" type="Particles2D" parent="."]
+emitting = false
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.7
+randomness = 0.5
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 6 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -32.0
 margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 16.0
+color = Color( 0.956863, 0.0470588, 0.0470588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

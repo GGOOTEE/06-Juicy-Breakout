@@ -2,7 +2,7 @@
 
 An attempt at creating "juicy" features as demonstrated in the 2012 GDC presentation, "Juice it or Lose it."
 
-
+Credit for music: https://patrickdearteaga.com
 
  
  - 1.) Changing the color of the paddle, ball, and blocks
